@@ -10,24 +10,24 @@ Request tracing, authentication, and rate limiting are handled via filters and i
 
 ## Key Features Implemented
 ### Requirement	Implementation
--API structure and documentation	Swagger (`springdoc-openapi`) set up in `access-management` and `patient-service`.
--Client access validation	Client ID header and in downstream services manually cross-validated.
--Multi-tenancy support	Tenant identification via `X-Client-ID`, propagated and used downstream.
--1-second SLA handling	Efficient routing with Spring Cloud Gateway.
--Test Coverage: Unit tests added for authentication and patient API flows.
+- API structure and documentation	Swagger (`springdoc-openapi`) set up in `access-management` and `patient-service`.
+- Client access validation	Client ID header and in downstream services manually cross-validated.
+- Multi-tenancy support	Tenant identification via `X-Client-ID`, propagated and used downstream.
+- 1-second SLA handling	Efficient routing with Spring Cloud Gateway.
+- Test Coverage: Unit tests added for authentication and patient API flows.
 
-###Technologies Used
--Language:	Java 17
--Build Tool:	Maven
--Microservices Framework:	Spring Boot 3.x
--Service Discovery:	Eureka Server
--API Gateway:	Spring Cloud Gateway
--REST API Docs:	SpringDoc OpenAPI 2.x (Swagger)
--Authentication:	Spring Security + JWT
--Tracing:	Spring Cloud Sleuth + Zipkin
--Caching: Spring Cloud
--Database:	PostgreSQL
--Testing:	JUnit 5, Mockito
+### Technologies Used
+- Language:	Java 17
+- Build Tool:	Maven
+- Microservices Framework:	Spring Boot 3.x
+- Service Discovery:	Eureka Server
+- API Gateway:	Spring Cloud Gateway
+- REST API Docs:	SpringDoc OpenAPI 2.x (Swagger)
+- Authentication:	Spring Security + JWT
+- Tracing:	Spring Cloud Sleuth + Zipkin
+- Caching: Spring Cloud
+- Database:	PostgreSQL
+- Testing:	JUnit 5, Mockito
 
 ### Assumptions
 - Each client is uniquely identified using `X-Client-ID`.
@@ -45,13 +45,13 @@ Request tracing, authentication, and rate limiting are handled via filters and i
 -request tracing not working as expected
 
 ### Future Improvements
--Implementing Distributed cache using Redis.
--Rate limiting or Resiliency: yet to be implemented
--Security: Add refresh token flow, revoke access tokens, and validate JWT expiry & audience.
--Scalability: Use Redis-backed gateway rate limiting and distributed cache for user/session data.
--Observability: Integrate Prometheus + Grafana for metrics, circuit breaker dashboards.
--Multitenancy: Use schema-per-tenant or partitioned data model with tenant isolation.
--Load Testing: Run JMeter or Gatling test to validate 100 concurrent users within 1s SLA.
--CI/CD: Setup GitHub Actions or Jenkins pipelines.
--Containerization: Dockerize each service and use Kubernetes for orchestration.
+- Implementing Distributed cache using Redis.
+- Rate limiting or Resiliency: yet to be implemented
+- Security: Add refresh token flow, revoke access tokens, and validate JWT expiry & audience.
+- Scalability: Use Redis-backed gateway rate limiting and distributed cache for user/session data.
+- Observability: Integrate Prometheus + Grafana for metrics, circuit breaker dashboards.
+- Multitenancy: Use schema-per-tenant or partitioned data model with tenant isolation.
+- Load Testing: Run JMeter or Gatling test to validate 100 concurrent users within 1s SLA.
+- CI/CD: Setup GitHub Actions or Jenkins pipelines.
+- Containerization: Dockerize each service and use Kubernetes for orchestration.
 
