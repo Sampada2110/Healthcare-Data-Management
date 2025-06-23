@@ -24,6 +24,8 @@ public class AppUser {
 
     private String password;
 
+    @Enumerated(EnumType.STRING) // Add this!
+    @Column(nullable = false)
     private UserRole role;
 
     private Boolean enabled = true;

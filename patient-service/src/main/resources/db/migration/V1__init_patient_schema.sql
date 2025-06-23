@@ -10,7 +10,7 @@ EXCEPTION
 END $$;
 
 -- Create patients table
-CREATE TABLE IF NOT EXISTS patients (
+CREATE TABLE IF NOT EXISTS patient (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     client_id UUID NOT NULL,
     name VARCHAR(255) NOT NULL,
@@ -24,6 +24,6 @@ CREATE TABLE IF NOT EXISTS patients (
 );
 
 -- Indexes
-CREATE INDEX IF NOT EXISTS idx_patients_client_id ON patients(client_id);
-CREATE INDEX IF NOT EXISTS idx_patients_name ON patients(name);
-CREATE INDEX IF NOT EXISTS idx_patients_email ON patients(email);
+CREATE INDEX IF NOT EXISTS idx_patient_client_id ON patient(client_id);
+CREATE INDEX IF NOT EXISTS idx_patient_name ON patient(name);
+CREATE INDEX IF NOT EXISTS idx_patient_email ON patient(email);

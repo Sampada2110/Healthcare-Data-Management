@@ -76,7 +76,7 @@ class UserServiceImplTest {
         AuthenticationRequest request = new AuthenticationRequest("testuser", "password");
 
         when(userRepository.findByUsername("testuser")).thenReturn(Optional.of(testUser));
-        when(jwtUtil.generateToken(testUser.getUsername(), clientId)).thenReturn("jwt-token");
+        when(jwtUtil.generateToken(testUser.getUsername(), clientId,testUser.getRole().name())).thenReturn("jwt-token");
 
         String token = userService.authenticateAndGenerateToken(request);
 

@@ -1,8 +1,10 @@
 package com.hcdm.access.management.service.utils;
 
+import com.hcdm.access.management.service.entity.UserRole;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -46,12 +48,16 @@ public class JwtUtil {
         return extractExpiration(token).before(new Date());
     }
 
-    public String generateToken(String username, UUID clientId) {
+    public String generateToken(String username, UUID clientId, String role) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("clientId", clientId.toString());
+        claims.put("role",role);
         return createToken(claims, username);
     }
-
+    public String extractRole(String token) {
+        Claims claims = extractAllClaims(token);
+        return claims.get("role",String.class);
+    }
     public UUID extractClientId(String token) {
         Claims claims = extractAllClaims(token);
         return UUID.fromString(claims.get("clientId", String.class));

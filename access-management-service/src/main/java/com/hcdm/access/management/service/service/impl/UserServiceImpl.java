@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
         AppUser user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        return jwtUtil.generateToken(user.getUsername(), user.getClient().getId());
+        return jwtUtil.generateToken(user.getUsername(), user.getClient().getId(),user.getRole().name());
     }
 
     @CacheEvict(value = "usersByClient", key = "#adminUsername")
