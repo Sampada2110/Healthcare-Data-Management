@@ -22,7 +22,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    @Cacheable(value = "users", key = "#username")
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<AppUser> user = userRepository.findByUsername(username);

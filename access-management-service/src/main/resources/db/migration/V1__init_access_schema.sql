@@ -3,24 +3,11 @@
 -- Ensure extension for UUID generation exists
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
--- Create enum types
-DO $$ BEGIN
-    CREATE TYPE user_role AS ENUM ('ADMIN', 'USER');
-EXCEPTION
-    WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
-    CREATE TYPE client_status AS ENUM ('ACTIVE', 'INACTIVE');
-EXCEPTION
-    WHEN duplicate_object THEN null;
-END $$;
-
 -- Create table: client
 CREATE TABLE IF NOT EXISTS client (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(255) NOT NULL UNIQUE,
-    status client_status NOT NULL,
+    status VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -32,7 +19,7 @@ CREATE TABLE IF NOT EXISTS app_user (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role user_role NOT NULL,
+    role VARCHAR(255) NOT NULL,
     enabled BOOLEAN NOT NULL DEFAULT TRUE,
     client_id UUID NOT NULL,
     CONSTRAINT fk_client FOREIGN KEY (client_id) REFERENCES client(id) ON DELETE CASCADE

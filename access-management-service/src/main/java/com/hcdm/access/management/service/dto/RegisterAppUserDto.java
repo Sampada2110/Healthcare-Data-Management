@@ -2,6 +2,7 @@ package com.hcdm.access.management.service.dto;
 
 import com.hcdm.access.management.service.entity.UserRole;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,7 @@ public class RegisterAppUserDto {
     @NotBlank(message = "Password is required")
     @Size(min = 6, max = 100)
     private String password;
-    @NotBlank(message = "Role must not be empty")
+    @NotNull(message = "Role is required")
     private UserRole role;
 
 }

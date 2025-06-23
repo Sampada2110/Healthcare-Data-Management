@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS patient (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     client_id UUID NOT NULL,
     name VARCHAR(255) NOT NULL,
-    gender gender NOT NULL,
+    gender VARCHAR(255) NOT NULL,
     date_of_birth DATE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     address VARCHAR(255) NOT NULL,

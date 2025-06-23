@@ -22,7 +22,7 @@ public class PatientDto {
     @NotBlank(message = "Name is required")
     private String name;
 
-    @NotBlank(message = "Gender is required")
+    @NotNull(message = "Gender is required")
     private Gender gender;
 
     @NotNull(message = "Date of Birth is required")
