@@ -5,6 +5,8 @@ import com.hcdm.access.management.service.dto.AuthenticationRequest;
 import com.hcdm.access.management.service.dto.RegisterAppUserDto;
 import com.hcdm.access.management.service.service.UserService;
 import com.hcdm.access.management.service.utils.JwtUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "Authentication Management", description = "Endpoints for authenticating users")
 public class AuthenticationController {
 
     @Autowired
@@ -32,6 +35,7 @@ public class AuthenticationController {
     private UserService userService;
 
     @PostMapping("/login")
+    @Operation(summary = "Login")
     public ResponseEntity<Map<String, String>> login(@Valid @RequestBody AuthenticationRequest request) {
     //    try {
             log.info("Attempting login for user: {}", request.getUsername());
@@ -48,6 +52,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Register New User")
     public ResponseEntity<String> registerUser( @Valid @RequestBody RegisterAppUserDto request,
                                                @RequestHeader("Authorization") String authHeader) {
 //        try{

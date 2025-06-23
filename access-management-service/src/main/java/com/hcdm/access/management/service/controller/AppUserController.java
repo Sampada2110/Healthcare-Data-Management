@@ -5,6 +5,8 @@ import com.hcdm.access.management.service.dto.AppUserDto;
 import com.hcdm.access.management.service.dto.UpdateAppUserDto;
 import com.hcdm.access.management.service.service.UserService;
 import com.hcdm.access.management.service.utils.JwtUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
+@Tag(name = "Application User Management", description = "Endpoints for managing application users")
 public class AppUserController {
 
     @Autowired
@@ -26,6 +29,7 @@ public class AppUserController {
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "List Users by client")
     public ResponseEntity<List<AppUserDto>> listUsersForClient(@RequestHeader("Authorization") String authHeader) {
         String username = extractUsernameFromHeader(authHeader);
         List<AppUserDto> users = userService.getUsersForClient(username);
@@ -34,6 +38,7 @@ public class AppUserController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Get User By ID")
     public ResponseEntity<AppUserDto> getUser(@PathVariable UUID id,
                                               @RequestHeader("Authorization") String authHeader) {
         String username = extractUsernameFromHeader(authHeader);
@@ -43,6 +48,7 @@ public class AppUserController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Delete User By ID")
     public ResponseEntity<Void> deleteUser(@PathVariable UUID id,
                                            @RequestHeader("Authorization") String authHeader) {
         String username = extractUsernameFromHeader(authHeader);
@@ -51,6 +57,7 @@ public class AppUserController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Update User By ID")
     public ResponseEntity<AppUserDto> updateUser(@PathVariable UUID id,
                                                  @Valid @RequestBody UpdateAppUserDto dto,
                                                  @RequestHeader("Authorization") String authHeader) {
