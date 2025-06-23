@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.hcdm</groupId>
-	<artifactId>patient-service</artifactId>
+	<artifactId>access-management-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>patient-service</name>
-	<description>Patient Service for Healthcare Data Management</description>
+	<name>access-management-service</name>
+	<description>Access Management for Healthcare Data Management</description>
 	<url/>
 	<licenses>
 		<license/>
